@@ -27,11 +27,8 @@ from bs4 import BeautifulSoup
 ## find_urls("the internet is awesome #worldwideweb") should return [], empty list
 
 def find_urls(s):
-    url = re.findall('http|https:\/\/\S+com', s)
+    url = re.findall('(https*:\/\/\S+\.\S+)', s)
     return url
-    #print(url)
-
-    #pass
     #Your code here
 
 
