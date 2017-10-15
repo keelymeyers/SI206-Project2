@@ -44,9 +44,11 @@ def grab_headlines():
     text_from_file = f.read()
     #url = ('https://www.michigandaily.com/section/opinion' )
     #html = ('opinion.html', )
-    soup = BeautifulSoup(text_from_file)
-    tags = soup()
-    pass
+    headlines = []
+    soup = BeautifulSoup(text_from_file, "lxml")
+    tags = soup('ol')
+    most_read = tags.get('li', None)
+    return most_read
     #Your code here
 
 
