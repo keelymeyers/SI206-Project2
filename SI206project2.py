@@ -14,6 +14,7 @@ import unittest
 import requests
 import re
 from bs4 import BeautifulSoup
+import urllib.request, urllib.parse, urllib.error
 
 
 ## Part 1 -- Define your find_urls function here.
@@ -39,6 +40,12 @@ def find_urls(s):
 ## http://www.michigandaily.com/section/opinion
 
 def grab_headlines():
+    f = open("opinion.html", "r")
+    text_from_file = f.read()
+    #url = ('https://www.michigandaily.com/section/opinion' )
+    #html = ('opinion.html', )
+    soup = BeautifulSoup(text_from_file)
+    tags = soup()
     pass
     #Your code here
 
