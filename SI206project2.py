@@ -28,9 +28,10 @@ import urllib.request, urllib.parse, urllib.error
 ## find_urls("the internet is awesome #worldwideweb") should return [], empty list
 
 def find_urls(s):
+    #Your code here
     url = re.findall('(https*:\/\/\S+\.\S\S+)', s)
     return url
-    #Your code here
+    
 
 
 
@@ -40,16 +41,20 @@ def find_urls(s):
 ## http://www.michigandaily.com/section/opinion
 
 def grab_headlines():
+    #Your code here
     f = open("opinion.html", "r")
     text_from_file = f.read()
     #url = ('https://www.michigandaily.com/section/opinion' )
-    #html = ('opinion.html', )
+    #html = urllib.request.urlopen(url).read()
     headlines = []
     soup = BeautifulSoup(text_from_file, "lxml")
-    tags = soup('ol')
-    most_read = tags.get('li', None)
-    return most_read
-    #Your code here
+    tags = soup.ol
+    for li in tags:
+        if li.string != '\n':
+            headlines.append(li.string)
+    return headlines
+    
+    
 
 
 
