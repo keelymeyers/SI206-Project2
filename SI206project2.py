@@ -42,19 +42,26 @@ def find_urls(s):
 
 def grab_headlines():
     #Your code here
+
+    ##### Saved opinion file #####
     f = open("opinion.html", "r")
     text_from_file = f.read()
-    #url = ('https://www.michigandaily.com/section/opinion' )
-    #html = urllib.request.urlopen(url).read()
-    headlines = []
     soup = BeautifulSoup(text_from_file, "lxml")
+
+    ##### Real code from Michigan Daily #####
+    #u = "https://www.michigandaily.com/section/opinion"
+    #html = requests.get(u)
+    #r = html.text
+    #soup = BeautifulSoup(r, "lxml")
+    
+    headlines = []
     tags = soup.ol
     for li in tags:
         if li.string != '\n':
-            headlines.append(li.string)
+            headlines.append(li.text)
     return headlines
     
-    
+
 
 
 
@@ -70,7 +77,11 @@ def grab_headlines():
 ## requests.get(base_url, headers={'User-Agent': 'SI_CLASS'}) 
 
 def get_umsi_data():
-    pass
+    UMSI = "https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastna me_value=&rid=All"
+    UMSI_html = requests.get(UMSI, headers={'User-Agent': 'SI_CLASS'})
+    x = UMSI_html.text
+    umsi_soup = BeautifulSoup(x, "lxml")
+    print (umsi_soup)
     #Your code here
 
 ## PART 3 (b) Define a function called num_students.  
