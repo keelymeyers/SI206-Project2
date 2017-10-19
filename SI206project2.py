@@ -31,8 +31,6 @@ def find_urls(s):
     #Your code here
     url = re.findall('(https*:\/\/\S+\.\S\S+)', s)
     return url
-    
-
 
 
 ## PART 2  - Define a function grab_headlines.
@@ -60,8 +58,6 @@ def grab_headlines():
         if li.string != '\n':
             headlines.append(li.text)
     return headlines
-    
-
 
 
 
@@ -77,9 +73,13 @@ def grab_headlines():
 ## requests.get(base_url, headers={'User-Agent': 'SI_CLASS'}) 
 
 def get_umsi_data():
-    UMSI = "https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastna me_value=&rid=All"
-    UMSI_html = requests.get(UMSI, headers={'User-Agent': 'SI_CLASS'})
-    x = UMSI_html.text
+    base_url = "https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastna me_value=&rid=All"
+    count = 11
+    while count != 0:
+        UMSI = base_url + "&page=" + str(count)
+        count = count -1
+        UMSI_html = requests.get(UMSI, headers={'User-Agent': 'SI_CLASS'})
+        x = UMSI_html.text
     umsi_soup = BeautifulSoup(x, "lxml")
     print (umsi_soup)
     #Your code here
