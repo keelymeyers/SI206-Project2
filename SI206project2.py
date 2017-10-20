@@ -73,15 +73,57 @@ def grab_headlines():
 ## requests.get(base_url, headers={'User-Agent': 'SI_CLASS'}) 
 
 def get_umsi_data():
-    base_url = "https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastna me_value=&rid=All"
-    count = 11
-    while count != 0:
-        UMSI = base_url + "&page=" + str(count)
-        count = count -1
-        UMSI_html = requests.get(UMSI, headers={'User-Agent': 'SI_CLASS'})
-        x = UMSI_html.text
-    umsi_soup = BeautifulSoup(x, "lxml")
-    print (umsi_soup)
+
+    umsi_titles = {}
+    UMSI = "https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastna me_value=&rid=All"
+    #count = 11
+    #while count != 0:
+    #UMSI = base_url + "&page=" + str(count)
+    #count = count -1
+    UMSI_html = requests.get(UMSI, headers={'User-Agent': 'SI_CLASS'})
+    x = UMSI_html.text
+    umsi_soup = BeautifulSoup(x, 'html.parser')
+
+
+    name_tags = umsi_soup.find_all("div", class_="field-item even", property="dc:title")
+    #for n in name_tags:
+        #print (n.text)
+
+    title_tags = umsi_soup.find_all("div", class_="field field-name-field-person-titles field-type-text field-label-hidden")
+    #for t in title_tags:
+        #print (t.text)
+
+
+    count = 0
+    for n in name_tags: 
+        umsi_titles[n.text]=title_tags[count].text
+        count += 1
+
+    return umsi_titles
+
+    
+    
+
+        #name = t.find_all('h2')
+        #for n in name:
+            #print (n.text)
+
+
+        #title = t.find_all("div", class_="field field-name-field-person-titles field-type-text field-label-hidden")
+        #print (title)
+        
+        #for t in title:
+            #print (t.text)
+            #umsi_titles[n.text] = t.text
+            #print (umsi_titles[n.text])
+    print (umsi_titles)
+        
+    
+    #print (tags.text)
+    
+    #umsi_titles[tags] = tags.text
+    #print (umsi_titles)
+    #print (umsi_soup)
     #Your code here
 
 ## PART 3 (b) Define a function called num_students.  
