@@ -1,8 +1,8 @@
 ## SI 206 W17 - Project 2
 
 ## COMMENT HERE WITH:
-## Your name:
-## Anyone you worked with on this project:
+## Your name: Keely Meyers
+## Anyone you worked with on this project: worked independently 
 
 ## Below we have provided import statements, comments to separate out the parts of the project, instructions/hints/examples, and at the end, TESTS.
 
@@ -39,15 +39,15 @@ def find_urls(s):
 
 def grab_headlines():
     ##### Saved opinion file #####
-    f = open("opinion.html", "r")
-    text_from_file = f.read()
-    soup = BeautifulSoup(text_from_file, "lxml")
+    #f = open("opinion.html", "r")
+    #text_from_file = f.read()
+    #soup = BeautifulSoup(text_from_file, "lxml")
 
     ##### Real code from Michigan Daily #####
-    #u = "https://www.michigandaily.com/section/opinion"
-    #html = requests.get(u)
-    #r = html.text
-    #soup = BeautifulSoup(r, "lxml")
+    u = "https://www.michigandaily.com/section/opinion"
+    html = requests.get(u)
+    r = html.text
+    soup = BeautifulSoup(r, "lxml")
     
     headlines = []
     tags = soup.ol
