@@ -99,7 +99,11 @@ def get_umsi_data():
 ## INPUT: The dictionary from get_umsi_data().
 ## OUTPUT: Return number of PhD students in the data.  (Don't forget, I may change the input data)
 def num_students(data):
-    pass
+    phd_count = 0
+    for person in data:
+        if data[person] == 'PhD student':
+            phd_count += 1
+    return phd_count
 
 
 
